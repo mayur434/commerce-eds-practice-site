@@ -1,6 +1,6 @@
 mountpoints:
   /:
-    url: https://content.da.live/hlxsites/aem-boilerplate-commerce/
+    url: https://content.da.live/mayur434/aem-boilerplate-commerce/
     type: markup
 
 folders:

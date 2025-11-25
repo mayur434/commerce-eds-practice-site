@@ -1,10 +1,10 @@
 import { loadFragment } from '../fragment/fragment.js';
 import { getMetadata } from '../../scripts/aem.js';
-// media query match that indicates mobile/tablet width
-const isDesktop = window.matchMedia('(min-width: 900px)');
 import createModal from '../modal/modal.js';
 import { checkPincode } from '../location-modal/postload.js';
 import { createCustomer, generateCustomerToken } from './customerToken.js';
+// media query match that indicates mobile/tablet width
+const isDesktop = window.matchMedia('(min-width: 900px)');
 
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
@@ -35,18 +35,18 @@ export default async function decorate(block) {
   function initCategoryHover(root) {
     const categoryBlock = root.querySelector('.categories.block');
     if (!categoryBlock) {
-      console.warn('⚠️ No .categories.block found in sub-nav');
+      // ...existing code...
       return;
     }
 
     const secondDiv = categoryBlock.querySelector(':scope > div:nth-child(2)');
     if (!secondDiv) {
-      console.warn('⚠️ Second column (.categories.block > div:nth-child(2)) not found');
+      // ...existing code...
       return;
     }
 
     const topLevelItems = categoryBlock.querySelectorAll(
-      ':scope > div > div > ul > li'
+      ':scope > div > div > ul > li',
     );
 
     topLevelItems.forEach((item, index) => {
@@ -64,7 +64,7 @@ export default async function decorate(block) {
       img.loading = 'lazy';
       baseSpan.appendChild(img);
 
-      addIcon.forEach(container => {
+      addIcon.forEach((container) => {
         if (!container.querySelector('.icon-down-arrow')) {
           container.appendChild(baseSpan.cloneNode(true));
         }
@@ -72,7 +72,7 @@ export default async function decorate(block) {
 
       // 🖱 Hover on left-side category → fill second column
       item.addEventListener('mouseenter', () => {
-        removeArrowFromAll();          // your existing helper
+        removeArrowFromAll(); // your existing helper
         secondDiv.innerHTML = '';
 
         if (storing) {
@@ -82,7 +82,7 @@ export default async function decorate(block) {
 
         // inner items activeInside behaviour
         setTimeout(() => {
-          secondDiv.querySelectorAll('li').forEach(li => {
+          secondDiv.querySelectorAll('li').forEach((li) => {
             li.setAttribute('activeInside', 'false');
             li.addEventListener('mouseenter', () => {
               li.setAttribute('activeInside', 'true');
@@ -113,7 +113,7 @@ export default async function decorate(block) {
     // Ensure there are at least two <ul> elements
     if (ulLists.length >= 2) {
       const displayList = ulLists[0].querySelectorAll('li'); // first UL
-      const slugList = ulLists[1].querySelectorAll('li');    // second UL
+      const slugList = ulLists[1].querySelectorAll('li'); // second UL
 
       displayList.forEach((item, index) => {
         const slugItem = slugList[index];
@@ -125,12 +125,11 @@ export default async function decorate(block) {
         }
       });
       ulLists[1].remove();
-      console.log('✅ Added sub-nav attributes to header items:', displayList);
+      // ...existing code...
     } else {
-      console.warn('⚠️ Not enough <ul> elements found inside header-new-container');
+      // ...existing code...
     }
   }
-
 
   const hoverContainer = fragment.querySelector('.sub-nav-container');
   hoverContainer.setAttribute('expanded', 'false');
@@ -143,10 +142,10 @@ export default async function decorate(block) {
   const airConditionerLink = tempDiv.querySelectorAll('li');
 
   if (airConditionerLink) {
-    airConditionerLink.forEach(link => link.setAttribute('active', 'false'));
-    console.log('✅ Added sub-nav attribute to Air Conditioner');
+    airConditionerLink.forEach((link) => link.setAttribute('active', 'false'));
+    // ...existing code...
   } else {
-    console.warn('⚠️ Air Conditioner link not found');
+    // ...existing code...
   }
 
   // ✅ Merge top-level ULs inside categories
@@ -162,18 +161,18 @@ export default async function decorate(block) {
       for (let i = 1; i < topLevelULs.length; i++) {
         const currentUL = topLevelULs[i];
         const lis = Array.from(currentUL.children);
-        lis.forEach(li => firstUL.appendChild(li));
+        lis.forEach((li) => firstUL.appendChild(li));
         currentUL.remove(); // remove the now-empty UL
       }
-      // console.log('✅ Merged all top-level ULs into one:', firstUL);
+      // ...existing code...
     } else {
-      console.warn('⚠️ Only one UL found — no merge needed.');
+      // ...existing code...
     }
   }
 
   const topCategoryParas = tempDiv.querySelectorAll('.categories.block > div > div > ul > li > p.button-container');
 
-  topCategoryParas.forEach(p => {
+  topCategoryParas.forEach((p) => {
     const a = p.querySelector('a');
     if (a) {
       const span = document.createElement('span');
@@ -201,7 +200,7 @@ export default async function decorate(block) {
 
   block.append(navContent);
   block.append(headerNewSection);
-  console.log("asdhausdbuas", hoverContainer);
+  // ...existing code...
   block.append(hoverContainer);
 
   const main = document.querySelector('main');
@@ -230,19 +229,18 @@ export default async function decorate(block) {
 
   function removeApplyBorderFromAll() {
     const liItems = headerNewSection.querySelectorAll('ul > li');
-    liItems.forEach(li => {
+    liItems.forEach((li) => {
       li.classList.remove('applyBorderOnHover');
     });
   }
 
   function transformSubNav(htmlString, activeSlug = '') {
-
     const temp = document.createElement('div');
     temp.innerHTML = (htmlString || '')
       .replace('<main>', '<div>')
       .replace('</main>', '</div>');
 
-    temp.querySelectorAll('li').forEach(li => li.setAttribute('active', 'false'));
+    temp.querySelectorAll('li').forEach((li) => li.setAttribute('active', 'false'));
 
     // 2) Merge or other manipulations (if you do that)
     const categoryBlockLocal = temp.querySelector('.categories.block');
@@ -251,7 +249,7 @@ export default async function decorate(block) {
       if (topULs.length > 1) {
         const firstUL = topULs[0];
         for (let i = 1; i < topULs.length; i++) {
-          Array.from(topULs[i].children).forEach(childLi => firstUL.appendChild(childLi));
+          Array.from(topULs[i].children).forEach((childLi) => firstUL.appendChild(childLi));
           topULs[i].remove();
         }
       }
@@ -259,7 +257,7 @@ export default async function decorate(block) {
 
     // 3) add right-arrow to level-1 button containers using createElement (preserve dataset)
     const level1Ps = temp.querySelectorAll('.categories.block > div > div > ul > li > p.button-container');
-    level1Ps.forEach(p => {
+    level1Ps.forEach((p) => {
       // avoid double-inserting
       if (!p.querySelector('.icon-right-arrow')) {
         const span = document.createElement('span');
@@ -280,7 +278,7 @@ export default async function decorate(block) {
 
     // 4) add down-arrow for inner button containers (createElement)
     const innerPs = temp.querySelectorAll('.categories.block li > ul > li > p.button-container');
-    innerPs.forEach(p => {
+    innerPs.forEach((p) => {
       if (!p.querySelector('.icon-down-arrow')) {
         const span = document.createElement('span');
         span.className = 'icon icon-down-arrow';
@@ -297,7 +295,7 @@ export default async function decorate(block) {
     });
 
     // 5) ensure nested ULs that should be expanded have display:block (you can tighten selectors)
-    temp.querySelectorAll('.categories.block ul').forEach(ul => {
+    temp.querySelectorAll('.categories.block ul').forEach((ul) => {
       // If this UL contains child <li>, keep visible — mimic original behavior
       // You can adjust conditions to only set for specific levels
       ul.style.display = 'block';
@@ -306,7 +304,7 @@ export default async function decorate(block) {
     // 6) set active="true" for the top-level li that corresponds to activeSlug (if provided)
     if (activeSlug) {
       // find top-level links and match by slug string in their 'a' href or text
-      temp.querySelectorAll('.categories.block > div > div > ul > li').forEach(li => {
+      temp.querySelectorAll('.categories.block > div > div > ul > li').forEach((li) => {
         const a = li.querySelector('p.button-container > a');
         if (a) {
           const href = a.getAttribute('href') || '';
@@ -324,12 +322,11 @@ export default async function decorate(block) {
 
   // Apply dynamic replace logic
   const headerItems = document.querySelectorAll(
-    '.header-new-wrapper > div > div > div > ul > li'
+    '.header-new-wrapper > div > div > div > ul > li',
   );
 
   headerItems.forEach((item, index) => {
     item.addEventListener('mouseenter', async () => {
-
       const slug = item.getAttribute('sub-nav');
       if (!slug) return;
       await generateSubNav(`/fragment/${slug}`, hoverInnerDiv, slug);
@@ -337,7 +334,6 @@ export default async function decorate(block) {
       arrowDragger(index);
       item.classList.add('applyBorderOnHover');
       toggleExpanded(true);
-
     });
 
     item.addEventListener('mouseleave', () => {
@@ -347,8 +343,6 @@ export default async function decorate(block) {
       toggleExpanded(false);
     });
   });
-
-
 
   function loadBorderBottom(index) {
     document.querySelectorAll('.header-new-wrapper > div > div > div > ul > li')
@@ -377,7 +371,7 @@ export default async function decorate(block) {
 
   function arrowDragger(index) {
     document.querySelectorAll('.sub-nav-container > div > div')
-      .forEach(item => {
+      .forEach((item) => {
         item.addEventListener('mouseenter', () => {
           showSubNav(index);
         });
@@ -387,48 +381,45 @@ export default async function decorate(block) {
       });
   }
 
-
   function removeArrowFromAll() {
     const liItems = document.querySelectorAll('li[active="true"]');
-    liItems.forEach(li => {
+    liItems.forEach((li) => {
       li.setAttribute('active', 'false');
     });
   }
 
-
-  document.querySelectorAll(".header.block>div:nth-child(2)>ul:first-child").forEach(item => {
+  document.querySelectorAll('.header.block>div:nth-child(2)>ul:first-child').forEach((item) => {
     item.addEventListener('click', () => {
       showModal(item);
       fetchToken();
     });
   });
 
-
   // ================= Location Modal Specific Code =====================
-  const locationLi = document.querySelector('.header-wrapper ul li')
+  const locationLi = document.querySelector('.header-wrapper ul li');
 
   if (locationLi) {
     locationLi.style.cursor = 'pointer'; // Optional: show pointer cursor on hover
     const hoverContainerPathLoc = '/modal/location';
     const fragmentLoc = await loadFragment(hoverContainerPathLoc);
     locationLi.addEventListener('click', async () => {
-      console.log('📍 Mumbai location clicked!');
+      // ...existing code...
       // 👉 Add your custom action here:
       await showModal(fragmentLoc);
       const modalDialog = document.querySelector('dialog');
-      console.log("assbasa", modalDialog);
+      // ...existing code...
       modalDialog.style.width = '340px';
 
       modalDialog.style.setProperty('width', '340px', 'important');
       setTimeout(() => {
         const modal = document.querySelector('.location-modal');
-        if (!modal) return console.warn('⚠️ .location-modal not found');
+        if (!modal) return;
 
         const inputPincode = modal.querySelector('#floatingInput');
         const applyButton = modal.querySelector('div:nth-child(5) > div > p');
 
         if (!inputPincode || !applyButton) {
-          console.warn('⚠️ Missing input or Apply element');
+          // ...existing code...
           return;
         }
 
@@ -455,7 +446,6 @@ export default async function decorate(block) {
             applyButton.style.pointerEvents = 'auto';
             applyButton.style.cursor = 'pointer';
             // applyButton.style.cursor = 'none';
-
           } else {
             applyButton.style.background = '#ccc';
             applyButton.style.opacity = '0.5';
@@ -466,21 +456,21 @@ export default async function decorate(block) {
         });
 
         // 🖱 Handle Apply click
-        applyButton.addEventListener('click', async e => {
+        applyButton.addEventListener('click', async (e) => {
           const pincode = inputPincode.value.trim();
           if (!/^\d{6}$/.test(pincode)) {
             e.preventDefault();
-            console.warn('⚠️ Invalid pincode entered');
+            // ...existing code...
             return;
           }
           const result = await checkPincode(pincode);
           if (result.body.Master[0]?.pincode == undefined) {
             document.querySelector('dialog')?.close(); // optional: close modal
-            console.warn('⚠️ Invalid pincode entered');
+            // ...existing code...
             alert('❌ Invalid Pincode. Please try again.');
             return;
           }
-          const pincodeToSet = result.body.Master[0]?.cityname + " " + result.body.Master[0]?.pincode;
+          const pincodeToSet = `${result.body.Master[0]?.cityname} ${result.body.Master[0]?.pincode}`;
           // // const decoded = atob(result);
           // console.log("decoded",decoded);
           const locationIcon = document.querySelector('.icon-location');
@@ -490,31 +480,28 @@ export default async function decorate(block) {
             const locationTextLi = locationContainer.querySelector('ul li:first-child');
             if (locationTextLi) {
               locationTextLi.textContent = pincodeToSet;
-              console.log('📍 Updated header location:', pincodeToSet);
+              // ...existing code...
             }
-
           }
           document.querySelector('dialog')?.close(); // optional: close modal
         });
       }, 1000);
     });
   } else {
-    console.warn('⚠️ Location <li> with "Mumbai 400067" not found');
+    // ...existing code...
   }
 
-
   // ================= Location Modal Specific Code Ends =====================
-
 
   // ================= Microsoft Sign-In (MSAL) Configuration =====================
 
   const msalConfig = {
     auth: {
-      clientId: "39b13792-0415-43d5-81c7-80962a7a3285",
-      authority: "https://login.microsoftonline.com/44a6c9d1-014f-4db6-8e72-af6ebeaac182",
-      redirectUri: window.location.origin
+      clientId: '39b13792-0415-43d5-81c7-80962a7a3285',
+      authority: 'https://login.microsoftonline.com/44a6c9d1-014f-4db6-8e72-af6ebeaac182',
+      redirectUri: window.location.origin,
     },
-    cache: { cacheLocation: "localStorage" }
+    cache: { cacheLocation: 'localStorage' },
   };
 
   let msalInstance;
@@ -526,22 +513,22 @@ export default async function decorate(block) {
     // Wait for MSAL library to load
     let attempts = 0;
     while (typeof window.msal === 'undefined' && attempts < 50) {
-      await new Promise(resolve => setTimeout(resolve, 100));
+      await new Promise((resolve) => setTimeout(resolve, 100));
       attempts++;
     }
 
     if (typeof window.msal === 'undefined') {
-      console.error("❌ MSAL library failed to load after 5 seconds");
-      throw new Error("MSAL library not available");
+      // ...existing code...
+      throw new Error('MSAL library not available');
     }
 
     try {
       msalInstance = new window.msal.PublicClientApplication(msalConfig);
       await msalInstance.initialize();
-      console.log("✅ MSAL initialized successfully");
+      // ...existing code...
       return msalInstance;
     } catch (error) {
-      console.error("❌ MSAL initialization failed:", error);
+      // ...existing code...
       throw error;
     }
   }
@@ -550,33 +537,32 @@ export default async function decorate(block) {
   function attachMicrosoftSignIn(button) {
     button.onclick = async () => {
       try {
-        console.log("🔐 Initializing MSAL...");
+        // ...existing code...
 
         // Initialize MSAL first
         const msal = await initMSAL();
 
-        console.log("🔐 Attempting Microsoft Sign-In...");
+        // ...existing code...
 
         const loginResponse = await msal.loginPopup({
-          scopes: ["openid", "profile", "email"]
+          scopes: ['openid', 'profile', 'email'],
         });
 
-        const account = loginResponse.account;
+        const { account } = loginResponse;
         const tokenResponse = await msal.acquireTokenSilent({
-          scopes: ["openid", "profile", "email"],
-          account
+          scopes: ['openid', 'profile', 'email'],
+          account,
         });
         const claims = tokenResponse.idTokenClaims;
-        console.log("NEwwwwwwwwwwww", JSON.stringify(tokenResponse, null, 5));
+        console.log('NEwwwwwwwwwwww', JSON.stringify(tokenResponse, null, 5));
 
         const ssoPayloadJsonString = JSON.stringify(tokenResponse);
 
         // 🔹 Derive email from claims
-        const email =
-          claims.preferred_username ||
-          claims.email ||
-          tokenResponse.account?.username ||
-          "";
+        const email = claims.preferred_username
+          || claims.email
+          || tokenResponse.account?.username
+          || '';
 
         // GraphQL mutation
         const mutation = `
@@ -593,46 +579,42 @@ export default async function decorate(block) {
 
         // Call your API Mesh GraphQL endpoint
         const response = await fetch(
-          "https://edge-sandbox-graph.adobe.io/api/d79af252-509e-4a97-b99c-824f0a08c271/graphql",
+          'https://edge-sandbox-graph.adobe.io/api/d79af252-509e-4a97-b99c-824f0a08c271/graphql',
           {
-            method: "POST",
+            method: 'POST',
             headers: {
-              "Content-Type": "application/json",
+              'Content-Type': 'application/json',
               // if you really don't want this, remove it later, but it's not related to the current error
-              "Authorization": `Bearer ${tokenResponse.accessToken}`
+              Authorization: `Bearer ${tokenResponse.accessToken}`,
             },
             body: JSON.stringify({
               query: mutation,
               variables: {
                 payload: ssoPayloadJsonString,
-                email // 🔹 pass email here
-              }
-            })
-          }
+                email, // 🔹 pass email here
+              },
+            }),
+          },
         );
 
         const result = await response.json();
-        console.log("ssoLogin result:", result);
-
+        // ...existing code...
 
         const userInfo = {
           given_name: claims.given_name,
           family_name: claims.family_name,
           email: claims.email,
           oid: claims.oid,
-          idToken: tokenResponse.idToken
+          idToken: tokenResponse.idToken,
         };
 
-        console.log(claims, "✅ Microsoft Login success:", userInfo);
-        console.log("ashysaybvsa", JSON.stringify(userInfo.idToken, null, 5));
-        console.log(userInfo.idToken);
-        console.log(String(userInfo.idToken));
+        // ...existing code...
         alert(`Welcome, ${userInfo}! You have successfully logged in.`);
         // Store user info in localStorage for persistence
         localStorage.setItem('ms_user_info', JSON.stringify({
           firstName: claims.given_name,
           lastName: claims.family_name,
-          email: claims.email
+          email: claims.email,
         }));
 
         // Update UI to show user name
@@ -656,9 +638,8 @@ export default async function decorate(block) {
         if (authPanel) {
           authPanel.classList.remove('nav-tools-panel--show');
         }
-
       } catch (err) {
-        console.error("❌ Microsoft Login error:", err);
+        console.error('❌ Microsoft Login error:', err);
         alert(`Login failed: ${err.message || 'Unknown error occurred'}`);
       }
     };
@@ -684,8 +665,6 @@ export default async function decorate(block) {
           modalDialog.style.setProperty('width', '500px', 'important');
         }
 
-
-
         if (index === 5) {
           console.log('Clicked on login icon');
 
@@ -705,7 +684,7 @@ export default async function decorate(block) {
           }
 
           // First time rendering
-          const module = await import('../header/renderAuthDropdown.js');
+          const module = await import('./renderAuthDropdown.js');
           const { renderAuthDropdown } = module;
 
           renderAuthDropdown(host);
@@ -738,27 +717,25 @@ export default async function decorate(block) {
     });
   }
 
-
   function appendMicrosoftButton() {
     const buttonContainer = document.querySelector('.auth-sign-in-form__form__buttons');
     if (!buttonContainer) {
-      console.warn("⚠️ Button container not found");
+      console.warn('⚠️ Button container not found');
       return;
     }
 
     // Create Microsoft Button
     const msBtn = document.createElement('button');
-    msBtn.role = "button";
-    msBtn.type = "button";
-    msBtn.id = "signInWithMicrosoft"; // ✅ Add ID for event listener
+    msBtn.role = 'button';
+    msBtn.type = 'button';
+    msBtn.id = 'signInWithMicrosoft'; // ✅ Add ID for event listener
     msBtn.setAttribute('data-testid', 'signInWithMicrosoft');
-    msBtn.className =
-      "dropin-button dropin-button--medium dropin-button--primary auth-button auth-sign-in-form__button auth-sign-in-form__button--submit auth-sign-in-form__button--microsoft";
+    msBtn.className = 'dropin-button dropin-button--medium dropin-button--primary auth-button auth-sign-in-form__button auth-sign-in-form__button--submit auth-sign-in-form__button--microsoft';
 
     // Text inside button
     const span = document.createElement('span');
-    span.className = "auth-button__text";
-    span.textContent = "Sign in with Microsoft";
+    span.className = 'auth-button__text';
+    span.textContent = 'Sign in with Microsoft';
 
     msBtn.appendChild(span);
 
@@ -768,106 +745,6 @@ export default async function decorate(block) {
     // ✅ Attach MSAL click handler RIGHT AFTER creating the button
     attachMicrosoftSignIn(msBtn);
 
-    console.log("✅ Microsoft Sign-In button added");
+    // ...existing code...
   }
-
-
-  // ================= Seacrh Modal Specific Code ENds =====================
-
-
-
-
-  async function fetchToken() {
-    const url = 'https://108480-jayeshappbuilder-stage.adobeio-static.net/api/v1/web/ceat-api-mesh/token-generator';
-
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // Add any required headers such as Authorization if needed
-        },
-        body: JSON.stringify({
-          // Include any required request payload parameters here
-          // e.g. clientId: 'YOUR_CLIENT_ID', clientSecret: 'YOUR_CLIENT_SECRET'
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error(`Token request failed: ${response.status} ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log('✅ Token data:', data);
-
-      // Example: store it or attach to subsequent requests
-      const token = data.token || data.id_token || data.accessToken;
-      // e.g. window.myAppToken = token;
-
-      return token;
-    } catch (err) {
-      console.error('❌ Error fetching token:', err);
-      return null;
-    }
-  }
-
-  const request = {
-    firstname: "Jayesh",
-    lastname: "Gupta",
-    email: "aditi@example.com",
-    password: "StrongPassword@123",
-    is_subscribed: true
-  }
-
-  // createCustomer({});
-  const response = await createCustomer({
-    firstname: request.firstname,
-    lastname: request.lastname,
-    email: request.email,
-    password: request.password,
-    is_subscribed: request.is_subscribed
-  });
-  const token = await generateCustomerToken({
-    email: request.email,
-    password: request.password
-  });
-  console.log("createCustomer", response);
-
-  console.log("generateCustomerToken", token.token);
-
-
-
-  // code for eds sso 
-
-  async function commerceQuery(query, variables) {
-    const meshEndpoint = 'https://edge-sandbox-graph.adobe.io/api/d79af252-509e-4a97-b99c-824f0a08c271/graphql';
-    const customerToken = localStorage.getItem('commerce_customer_token');
-
-    const res = await fetch(meshEndpoint, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: customerToken ? `Bearer ${customerToken}` : `Bearer ${token.token}`
-      },
-      body: JSON.stringify({ query, variables })
-    });
-
-    return res.json();
-  }
-
-  // Example: fetch current customer
-  const query = `
-  query {
-    customer {
-      email
-      firstname
-      lastname
-    }
-  }
-`;
-
-  const customerData = await commerceQuery(query);
-  console.log("customerData", customerData);
-
-
 }

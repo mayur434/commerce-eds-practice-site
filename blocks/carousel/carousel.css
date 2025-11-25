@@ -4,7 +4,7 @@ main > .section .carousel-wrapper {
 }
 
 .carousel-container h2, .carousel-container p {
-    padding: 0 var(--spacing-xxlarge);
+    padding: 0 var(--spacing-small);
     text-align: center;
 }
 

@@ -1,0 +1,209 @@
+/* Wrapper styling */
+.floating-input-wrapper {
+    position: relative;
+    width: 90%;
+    max-width: 380px;
+    margin: 16px 0;
+    font-family: "Inter", sans-serif;
+}
+
+/* Input */
+.floating-input {
+    width: 92%;
+    outline: none;
+    background: transparent;
+    transition: border-color 0.3s ease;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    color: #262626;
+    font-family: robotoMedium, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px;
+    max-width: 300px;
+    padding: 15px 0px 15px 20px;
+}
+
+/* Label styling */
+.floating-input-wrapper label {
+    position: absolute;
+    /* top: 12px; */
+    top: 15px;
+    left: 20px;
+    color: #888;
+    font-size: 16px;
+    pointer-events: none;
+    transition: 0.2s ease all;
+    background: #fff;
+    color: #9d9d9d;
+    font-family: robotoRegular, sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px;
+}
+
+/* Focused or has text — animate label up */
+.floating-input-wrapper.active label {
+    font-family: robotoRegular, sans-serif;
+    font-size: 12px !important;
+    font-weight: 400;
+    left: 16px;
+    line-height: 16px;
+    padding: 0px 4px;
+    top: -12px;
+    -webkit-transition: .3s linear;
+    transition: .3s linear;
+    top: -8px;
+    font-size: 13px;
+    background-color: #fff;
+    /* color: #0078d7; */
+}
+
+.floating-input-wrapper>label {
+    z-index: 2;
+    background: white;
+}
+
+/* Input active underline */
+/* .floating-input {
+    z-index: -1;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    color: #262626;
+
+    /* border-color: #0078d7; */
+/* } */
+
+/* Optional: Underline grow animation */
+.floating-input {
+    position: relative;
+}
+
+.floating-input::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    /* background: #0078d7; */
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+/* .floating-input:focus::after {
+    width: 100%;
+} */
+
+.modal-parent {
+    background-color: #fff;
+    border-radius: 16px;
+    max-width: 340px;
+    position: relative;
+    /* width: 340px; */
+}
+
+.modal dialog {
+    background-color: #fff;
+    border-radius: 16px;
+    max-width: 340px;
+    position: relative;
+    /* width: 340px !important; */
+}
+
+.location-modal-container>div>div>div {
+    display: flex;
+    /* flex-direction: column;
+    align-items: center; */
+    justify-content: center;
+}
+
+.location-modal-container>div>div>div:nth-child(1) {
+    padding-top: 33px;
+}
+
+
+.location-modal-container>div>div>div:nth-child(1)>p>span {
+    background: red;
+    /* max-width: 26.67px;
+    height: 50px;
+    width: 50px;
+    padding-top: 80px !important; */
+}
+
+.icon-location-modal {
+    width: 44px;
+    height: 44px;
+}
+
+
+.modal dialog .modal-content {
+    overflow-y: hidden;
+    overscroll-behavior: none;
+    max-height: 100%;
+}
+
+
+dialog {
+    border-radius: 16px !important;
+}
+
+.close-button {
+    top: 16px;
+    right: 16px;
+}
+
+
+.modal-content {
+    overflow: hidden;
+}
+
+
+
+.modal-parent>div:nth-child(2)>div>p {
+    color: #262626;
+    font-family: robotoBold, sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+
+}
+
+.modal-parent>div:nth-child(3)>div>p {
+    color: #555;
+    font-family: robotoRegular, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-top: 4px;
+}
+
+.location-modal-wrapper {
+    padding: 0 !important;
+}
+
+
+.modal-parent>div:nth-child(5)>div>p {
+    /* color: #555;
+    font-family: robotoRegular, sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 16px;
+    margin-top: 4px; */
+    margin-top: 40px;
+    font-family: robotoBold, sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 24.5px;
+    background: #262626;
+    border-radius: 25px;
+}
+
+
+.modal-parent>div>div>p {
+    margin: 0;
+    padding: 0;
+}

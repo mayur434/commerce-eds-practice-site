@@ -1,13 +1,231 @@
+# AEM/Adobe Helix specific
 .hlx/*
-coverage/*
-logs/*
-node_modules
+helix-importer-ui/
+.helix/
+*.hlx
+
+# Node.js dependencies and build artifacts
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json.bak
+.npm
+.npmrc.local
+
+# Build outputs and cache directories
+dist/
+build/
+.parcel-cache/
+.cache/
+.temp/
+.tmp/
+coverage/
+.nyc_output/
+lib-cov/
+
+# Runtime and log files
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Environment and configuration files
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+config.local.json
+*.config.local.*
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Editor and IDE files
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+.classpath
+
+# Backup files
+*.bak
+*.backup
+*.orig
+*.tmp
+*~
+
+# Cypress test artifacts
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
+cypress/fixtures/downloads/
+cypress/reports/
+cypress/results/
+
+# Test coverage and reports
+coverage/
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+junit.xml
+test-results/
+test-reports/
+
+# Dependencies and packages
+jspm_packages/
+bower_components/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Optional stylelint cache
+.stylelintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.cache
 .parcel-cache
 
-helix-importer-ui
-.DS_Store
-*.bak
-.idea
-# Ignore .map files in scripts/__dropins__/ directory and all its subdirectories
-scripts/__dropins__/**/*.map
-.env
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Adobe Commerce/Magento specific
+var/
+pub/media/
+pub/static/
+generated/
+
+# Dropins build artifacts and generated files - ENTIRE DROPINS DIRECTORY
+scripts/__dropins__/
+
+# Adobe Commerce generated files
+scripts/acdl/adobe-client-data-layer.min.js
+scripts/commerce-events-collector.js
+scripts/commerce-events-sdk.js
+
+# Local development files
+*.local
+local.*
+.local/
+
+# Security and sensitive files
+*.pem
+*.key
+*.cert
+*.crt
+*.p12
+*.pfx
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# Compressed files (if not part of the project)
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Generated documentation
+docs/build/
+documentation/build/
+
+# Webpack
+.webpack/
+
+# ESBuild
+.esbuild/
+
+# Turborepo
+.turbo/
+
+# Vercel
+.vercel
+
+# TypeScript
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity

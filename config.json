@@ -11,7 +11,7 @@
           "Magento-Store-Code": "main_website_store",
           "Magento-Store-View-Code": "default",
           "Magento-Website-Code": "base",
-          "x-api-key": "4dfa19c9fe6f4cccade55cc5b3da94f7",
+          "x-api-key": "search_gql",
           "Magento-Environment-Id": "7k8EEaou2ToLpUVmBc8LE7"
         }
       },
@@ -33,7 +33,7 @@
       },
       "plugins": {
         "picker": {
-          "rootCategory": "1"
+          "rootCategory": "3"
         }
       }
     }

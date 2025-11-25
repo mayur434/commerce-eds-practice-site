@@ -440,6 +440,7 @@ header nav .nav-tools-panel {
 .sub-nav-container[expanded="false"] {
   transition: opacity .65s ease-out;
   opacity: 0;
+  display: none;
 }
 
 /* When aria-expanded is "true", show the container */

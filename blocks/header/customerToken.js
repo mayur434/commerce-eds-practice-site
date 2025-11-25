@@ -1,10 +1,9 @@
 // scripts/customer-actions.js
 
 // 💡 Replace these with your actual App Builder web action URLs
-const CREATE_CUSTOMER_ACTION_URL =
-  'https://108480-jayeshappbuilder-development.adobeio-static.net/api/v1/web/JayeshAppBuilder/create-customer';
-const GENERATE_CUSTOMER_TOKEN_ACTION_URL =
-  'https://108480-jayeshappbuilder-development.adobeio-static.net/api/v1/web/JayeshAppBuilder/generate-customer-token';
+const CREATE_CUSTOMER_ACTION_URL = 'https://108480-jayeshappbuilder-development.adobeio-static.net/api/v1/web/JayeshAppBuilder/create-customer';
+const GENERATE_CUSTOMER_TOKEN_ACTION_URL = 'https://108480-jayeshappbuilder-development.adobeio-static.net/api/v1/web/JayeshAppBuilder/generate-customer-token';
+
 /**
  * Call App Builder "create-customer" action
  * @param {Object} payload
@@ -12,26 +11,27 @@ const GENERATE_CUSTOMER_TOKEN_ACTION_URL =
  * @param {string} payload.lastname
  * @param {string} payload.email
  * @param {string} payload.password
- * @param {boolean} [payload.is_subscribed=true]
+ * @param {boolean} [payload.isSubscribed=true]
  */
 export async function createCustomer({
   firstname,
   lastname,
   email,
   password,
-  is_subscribed = true,
+  isSubscribed = true, // camelCase for ESLint
 }) {
   const res = await fetch(CREATE_CUSTOMER_ACTION_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
+    // Send backend field as is_subscribed to avoid breaking your API
     body: JSON.stringify({
       firstname,
       lastname,
       email,
       password,
-      is_subscribed,
+      is_subscribed: isSubscribed,
     }),
   });
 
@@ -50,7 +50,7 @@ export async function createCustomer({
     throw new Error('Invalid JSON from createCustomer action');
   }
 
-  return json; // this is whatever your action returned (GraphQL response)
+  return json;
 }
 
 /**
@@ -86,7 +86,6 @@ export async function generateCustomerToken({ email, password }) {
     throw new Error('Invalid JSON from generateCustomerToken action');
   }
 
-  // If you used the code I gave for the action, token is in body.token
   const token = json?.body?.token ?? json?.token ?? null;
   return { raw: json, token };
 }
